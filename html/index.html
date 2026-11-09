@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="description" content="A familiar video discovery experience, powered by the YouTube Data API.">
+    <title>YouTube</title>
+    <link rel="icon" href="https://www.youtube.com/s/desktop/12d6b690/img/favicon_32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../java/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-start">
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <a class="brand" href="#" aria-label="YouTube home">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></span>
+          <span class="brand-name">YouTube</span><sup></sup>
+        </a>
+      </div>
+
+      <form class="search-area" id="searchForm" role="search">
+        <div class="search-box">
+          <input id="searchInput" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
+          <button class="search-submit" type="submit" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4.5 4.5"/></svg>
+          </button>
+        </div>
+        <button class="icon-button voice-button" id="voiceButton" type="button" aria-label="Search with your voice" title="Search with your voice">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8"/></svg>
+        </button>
+      </form>
+
+      <div class="topbar-end">
+        <button class="icon-button mobile-search-button" id="mobileSearchButton" type="button" aria-label="Open search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 4.5 4.5"/></svg>
+        </button>
+        <button class="icon-button settings-button" id="settingsButton" type="button" aria-label="API settings" title="API settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7.6 7.6 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7.6 7.6 0 0 1 0 2Z" transform="translate(-1 -1)"/></svg>
+        </button>
+        <button class="profile-button" id="profileButton" type="button" aria-label="Open profile menu">V</button>
+      </div>
+    </header>
+
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <nav>
+        <a class="nav-item active" href="#" data-view="Home"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1Z"/></svg></span><span>Home</span></a>
+        <a class="nav-item" href="#" data-view="Shorts"><span class="nav-icon shorts-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15.5 3.5-9 5a4 4 0 0 0 2 7.5h.2l-1.2.7a3.5 3.5 0 1 0 3.5 6.1l9-5a4 4 0 0 0-2-7.5h-.2l1.2-.7a3.5 3.5 0 0 0-3.5-6.1ZM10 10.4l4.5 2.6-4.5 2.6Z"/></svg></span><span>Shorts</span></a>
+        <a class="nav-item" href="#" data-view="Subscriptions"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v12H4zM8 21h8m-4-4v4M9 8l6 3-6 3z"/></svg></span><span>Subscriptions</span></a>
+        <div class="nav-divider"></div>
+        <a class="nav-item nav-heading" href="#" data-view="You"><span>You</span><span class="chevron">›</span></a>
+        <a class="nav-item" href="#" data-view="History"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8m0-5v5h5m4-2v6l4 2"/></svg></span><span>History</span></a>
+        <a class="nav-item" href="#" data-view="Playlists"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h11m1-3 5 3-5 3z"/></svg></span><span>Playlists</span></a>
+        <a class="nav-item" href="#" data-view="Your videos"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM10 9l5 3-5 3z"/></svg></span><span>Your videos</span></a>
+        <a class="nav-item" href="#" data-view="Watch later"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span>Watch later</span></a>
+        <div class="nav-divider"></div>
+        <h2 class="nav-section-title">Explore</h2>
+        <a class="nav-item" href="#" data-view="Trending"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-4-3-6-5-9 0 3-2 4-2 4S10 6 9 2C8 7 5 9 5 15a7 7 0 0 0 7 7Z"/><path d="M12 22a3 3 0 0 0 3-3c0-2-2-4-3-5-1 2-3 3-3 5a3 3 0 0 0 3 3Z"/></svg></span><span>Trending</span></a>
+        <a class="nav-item" href="#" data-view="Music"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13M9 18a3 3 0 1 1-3-3h3m12-2a3 3 0 1 1-3-3h3"/></svg></span><span>Music</span></a>
+        <a class="nav-item" href="#" data-view="Gaming"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9h12a4 4 0 0 1 3.8 5l-1 3a2 2 0 0 1-3.2 1l-2.4-2H8.8l-2.4 2a2 2 0 0 1-3.2-1l-1-3A4 4 0 0 1 6 9Z"/><path d="M7 11v4m-2-2h4m7-1h.01M18 14h.01"/></svg></span><span>Gaming</span></a>
+        <a class="nav-item" href="#" data-view="News"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM8 8h8v4H8zm0 7h3m2 0h3m-8 3h8"/></svg></span><span>News</span></a>
+      </nav>
+      <div class="sidebar-footer">About&nbsp; Press&nbsp; Copyright<br>Contact us&nbsp; Creators<br>Advertise&nbsp; Developers<br><br>Terms&nbsp; Privacy&nbsp; Policy &amp; Safety<br>How YouTube works<br>Test new features<br><br><span>© 2026 Google LLC</span></div>
+    </aside>
+
+    <main class="main-content">
+      <div class="category-bar" id="categoryBar" aria-label="Video categories">
+        <button class="category-chip selected" type="button" data-category="All">All</button>
+        <button class="category-chip" type="button" data-category="Music">Music</button>
+        <button class="category-chip" type="button" data-category="Gaming">Gaming</button>
+        <button class="category-chip" type="button" data-category="Live">Live</button>
+        <button class="category-chip" type="button" data-category="Mixes">Mixes</button>
+        <button class="category-chip" type="button" data-category="Cooking">Cooking</button>
+        <button class="category-chip" type="button" data-category="Nature">Nature</button>
+        <button class="category-chip" type="button" data-category="Recently uploaded">Recently uploaded</button>
+        <button class="category-chip" type="button" data-category="Watched">Watched</button>
+      </div>
+      <div class="notice-bar" id="noticeBar" role="status" hidden></div>
+      <section class="video-grid" id="videoGrid" aria-label="Recommended videos" aria-live="polite"></section>
+      <div class="empty-state" id="emptyState" hidden>
+        <span class="empty-icon">⌕</span>
+        <h2>No videos found</h2>
+        <p>Try a different search, or add a YouTube Data API key in settings to search YouTube.</p>
+      </div>
+      <div class="loading-state" id="loadingState" hidden><span class="spinner"></span><span>Loading videos…</span></div>
+      <footer class="mobile-footer">© 2026 Google LLC · Built with the YouTube Data API</footer>
+    </main>
+
+    <div class="modal-backdrop" id="playerBackdrop" hidden>
+      <section class="player-dialog" role="dialog" aria-modal="true" aria-label="Video player">
+        <button class="dialog-close player-close" type="button" aria-label="Close video">×</button>
+        <div class="player-frame" id="playerFrame"></div>
+        <h2 class="player-title" id="playerTitle"></h2>
+        <p class="player-channel" id="playerChannel"></p>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="settingsBackdrop" hidden>
+      <section class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="dialog-heading"><div><p class="eyebrow">PERSONALIZE YOUR EXPERIENCE</p><h2 id="settingsTitle">API settings</h2></div><button class="dialog-close settings-close" type="button" aria-label="Close settings">×</button></div>
+        <p class="settings-description">Connect your own YouTube Data API v3 key to search YouTube and load live video results.</p>
+        <label class="field-label" for="apiKeyInput">YouTube Data API key</label>
+        <div class="api-input-wrap"><input id="apiKeyInput" type="password" placeholder="Enter your API key" autocomplete="off"><button type="button" id="toggleKeyButton" aria-label="Show API key">Show</button></div>
+        <p class="api-help">Get a key in the Google Cloud Console with YouTube Data API v3 enabled. The key is stored in this browser only. Restrict it to the YouTube Data API and your website domain.</p>
+        <div class="settings-error" id="settingsError" role="alert" hidden></div>
+        <div class="settings-actions"><button class="text-button" id="clearKeyButton" type="button">Remove key</button><button class="primary-button" id="saveKeyButton" type="button">Save</button></div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
